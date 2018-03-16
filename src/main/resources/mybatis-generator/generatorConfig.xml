@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry
+            location="C:\Users\cao.zm\.m2\repository\mysql\mysql-connector-java\5.1.39\mysql-connector-java-5.1.39.jar"/>
+    <context id="test">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection
+                connectionURL="jdbc:mysql://127.0.0.1/font_store?useUnicode=true&amp;characterEncoding=utf-8"
+                driverClass="com.mysql.jdbc.Driver" password="abcd4321" userId="root"/>
+        <javaModelGenerator targetPackage="com.zhenming.test.entity"
+                            targetProject="SpringMVC-Test/src/main/java"/>
+        <sqlMapGenerator targetPackage="mapper" targetProject="SpringMVC-Test/src/main/resources"/>
+        <javaClientGenerator targetPackage="com.zhenming.test.dao"
+                             targetProject="SpringMVC-Test/src/main/java" type="XMLMAPPER"/>
+        <table tableName="t_name" domainObjectName="Name"/>
+        <table tableName="t_log" domainObjectName="Log"/>
+        <table tableName="t_font" domainObjectName="Font"/>
+    </context>
+
+    <!--<context id="test">-->
+        <!--<commentGenerator>-->
+            <!--<property name="suppressAllComments" value="true"/>-->
+        <!--</commentGenerator>-->
+        <!--<jdbcConnection-->
+                <!--connectionURL="jdbc:mysql://192.168.248.219:3307/font_shop?useUnicode=true&amp;characterEncoding=utf-8"-->
+                <!--driverClass="com.mysql.jdbc.Driver" password="abcd4321" userId="root"/>-->
+        <!--<javaModelGenerator targetPackage="com.zhenming.test.entity"-->
+                            <!--targetProject="SpringMVC-Test/src/main/java"/>-->
+        <!--<sqlMapGenerator targetPackage="mapper" targetProject="SpringMVC-Test/src/main/resources"/>-->
+        <!--<javaClientGenerator targetPackage="com.zhenming.test.dao"-->
+                             <!--targetProject="SpringMVC-Test/src/main/java" type="XMLMAPPER"/>-->
+        <!--<table tableName="fs_font" domainObjectName="Font"/>-->
+    <!--</context>-->
+</generatorConfiguration>

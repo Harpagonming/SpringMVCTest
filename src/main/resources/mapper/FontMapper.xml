@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhenming.test.dao.FontMapper" >
+  <resultMap id="BaseResultMap" type="com.zhenming.test.entity.Font" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="FONT_NAME" property="fontName" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="SHARE_TYPE" property="shareType" jdbcType="VARCHAR" />
+    <result column="SHARE_VALUE" property="shareValue" jdbcType="DECIMAL" />
+    <result column="AUTHOR" property="author" jdbcType="CHAR" />
+    <result column="INTRODUCTION" property="introduction" jdbcType="VARCHAR" />
+    <result column="IS_APP_RECOMMENT" property="isAppRecomment" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="APP_RECOMMENT_LABEL" property="appRecommentLabel" jdbcType="CHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" />
+    <result column="IS_DELETED" property="isDeleted" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="FONT_NUM" property="fontNum" jdbcType="INTEGER" />
+    <result column="UID" property="uid" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="OPEN_STATUS" property="openStatus" jdbcType="CHAR" />
+    <result column="FONT_FROM" property="fontFrom" jdbcType="VARCHAR" />
+    <result column="FONT_CLIENT_ID" property="fontClientId" jdbcType="VARCHAR" />
+    <result column="IS_WEB_RECOMMENT" property="isWebRecomment" jdbcType="VARCHAR" />
+    <result column="WEB_RECOMMENT_LABEL" property="webRecommentLabel" jdbcType="VARCHAR" />
+    <result column="LEVEL" property="level" jdbcType="VARCHAR" />
+    <result column="FORMATER" property="formater" jdbcType="VARCHAR" />
+    <result column="FONT_MODE" property="fontMode" jdbcType="VARCHAR" />
+    <result column="FONT_CODE" property="fontCode" jdbcType="VARCHAR" />
+    <result column="THICKNESS" property="thickness" jdbcType="VARCHAR" />
+    <result column="CHANNEL" property="channel" jdbcType="VARCHAR" />
+    <result column="CLIENT_PARENT_ID" property="clientParentId" jdbcType="VARCHAR" />
+    <result column="ROOT_ID" property="rootId" jdbcType="VARCHAR" />
+    <result column="FONT_CLOUD_ID" property="fontCloudId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, FONT_NAME, PRICE, SHARE_TYPE, SHARE_VALUE, AUTHOR, INTRODUCTION, IS_APP_RECOMMENT, 
+    STATUS, APP_RECOMMENT_LABEL, CREATE_DATE, CREATE_BY, UPDATE_DATE, UPDATE_BY, IS_DELETED, 
+    VERSION, FONT_NUM, UID, PHONE, OPEN_STATUS, FONT_FROM, FONT_CLIENT_ID, IS_WEB_RECOMMENT, 
+    WEB_RECOMMENT_LABEL, LEVEL, FORMATER, FONT_MODE, FONT_CODE, THICKNESS, CHANNEL, CLIENT_PARENT_ID, 
+    ROOT_ID, FONT_CLOUD_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zhenming.test.entity.FontExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_font
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_font
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_font
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zhenming.test.entity.FontExample" >
+    delete from t_font
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zhenming.test.entity.Font" >
+    insert into t_font (ID, FONT_NAME, PRICE, 
+      SHARE_TYPE, SHARE_VALUE, AUTHOR, 
+      INTRODUCTION, IS_APP_RECOMMENT, STATUS, 
+      APP_RECOMMENT_LABEL, CREATE_DATE, CREATE_BY, 
+      UPDATE_DATE, UPDATE_BY, IS_DELETED, 
+      VERSION, FONT_NUM, UID, 
+      PHONE, OPEN_STATUS, FONT_FROM, 
+      FONT_CLIENT_ID, IS_WEB_RECOMMENT, WEB_RECOMMENT_LABEL, 
+      LEVEL, FORMATER, FONT_MODE, 
+      FONT_CODE, THICKNESS, CHANNEL, 
+      CLIENT_PARENT_ID, ROOT_ID, FONT_CLOUD_ID
+      )
+    values (#{id,jdbcType=CHAR}, #{fontName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
+      #{shareType,jdbcType=VARCHAR}, #{shareValue,jdbcType=DECIMAL}, #{author,jdbcType=CHAR}, 
+      #{introduction,jdbcType=VARCHAR}, #{isAppRecomment,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{appRecommentLabel,jdbcType=CHAR}, #{createDate,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{isDeleted,jdbcType=VARCHAR}, 
+      #{version,jdbcType=INTEGER}, #{fontNum,jdbcType=INTEGER}, #{uid,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{openStatus,jdbcType=CHAR}, #{fontFrom,jdbcType=VARCHAR}, 
+      #{fontClientId,jdbcType=VARCHAR}, #{isWebRecomment,jdbcType=VARCHAR}, #{webRecommentLabel,jdbcType=VARCHAR}, 
+      #{level,jdbcType=VARCHAR}, #{formater,jdbcType=VARCHAR}, #{fontMode,jdbcType=VARCHAR}, 
+      #{fontCode,jdbcType=VARCHAR}, #{thickness,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, 
+      #{clientParentId,jdbcType=VARCHAR}, #{rootId,jdbcType=VARCHAR}, #{fontCloudId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhenming.test.entity.Font" >
+    insert into t_font
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="fontName != null" >
+        FONT_NAME,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="shareType != null" >
+        SHARE_TYPE,
+      </if>
+      <if test="shareValue != null" >
+        SHARE_VALUE,
+      </if>
+      <if test="author != null" >
+        AUTHOR,
+      </if>
+      <if test="introduction != null" >
+        INTRODUCTION,
+      </if>
+      <if test="isAppRecomment != null" >
+        IS_APP_RECOMMENT,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="appRecommentLabel != null" >
+        APP_RECOMMENT_LABEL,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY,
+      </if>
+      <if test="isDeleted != null" >
+        IS_DELETED,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="fontNum != null" >
+        FONT_NUM,
+      </if>
+      <if test="uid != null" >
+        UID,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="openStatus != null" >
+        OPEN_STATUS,
+      </if>
+      <if test="fontFrom != null" >
+        FONT_FROM,
+      </if>
+      <if test="fontClientId != null" >
+        FONT_CLIENT_ID,
+      </if>
+      <if test="isWebRecomment != null" >
+        IS_WEB_RECOMMENT,
+      </if>
+      <if test="webRecommentLabel != null" >
+        WEB_RECOMMENT_LABEL,
+      </if>
+      <if test="level != null" >
+        LEVEL,
+      </if>
+      <if test="formater != null" >
+        FORMATER,
+      </if>
+      <if test="fontMode != null" >
+        FONT_MODE,
+      </if>
+      <if test="fontCode != null" >
+        FONT_CODE,
+      </if>
+      <if test="thickness != null" >
+        THICKNESS,
+      </if>
+      <if test="channel != null" >
+        CHANNEL,
+      </if>
+      <if test="clientParentId != null" >
+        CLIENT_PARENT_ID,
+      </if>
+      <if test="rootId != null" >
+        ROOT_ID,
+      </if>
+      <if test="fontCloudId != null" >
+        FONT_CLOUD_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="fontName != null" >
+        #{fontName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="shareType != null" >
+        #{shareType,jdbcType=VARCHAR},
+      </if>
+      <if test="shareValue != null" >
+        #{shareValue,jdbcType=DECIMAL},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=CHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="isAppRecomment != null" >
+        #{isAppRecomment,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="appRecommentLabel != null" >
+        #{appRecommentLabel,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        #{isDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="fontNum != null" >
+        #{fontNum,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="openStatus != null" >
+        #{openStatus,jdbcType=CHAR},
+      </if>
+      <if test="fontFrom != null" >
+        #{fontFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="fontClientId != null" >
+        #{fontClientId,jdbcType=VARCHAR},
+      </if>
+      <if test="isWebRecomment != null" >
+        #{isWebRecomment,jdbcType=VARCHAR},
+      </if>
+      <if test="webRecommentLabel != null" >
+        #{webRecommentLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="formater != null" >
+        #{formater,jdbcType=VARCHAR},
+      </if>
+      <if test="fontMode != null" >
+        #{fontMode,jdbcType=VARCHAR},
+      </if>
+      <if test="fontCode != null" >
+        #{fontCode,jdbcType=VARCHAR},
+      </if>
+      <if test="thickness != null" >
+        #{thickness,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="clientParentId != null" >
+        #{clientParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="rootId != null" >
+        #{rootId,jdbcType=VARCHAR},
+      </if>
+      <if test="fontCloudId != null" >
+        #{fontCloudId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zhenming.test.entity.FontExample" resultType="java.lang.Integer" >
+    select count(*) from t_font
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_font
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.fontName != null" >
+        FONT_NAME = #{record.fontName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        PRICE = #{record.price,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shareType != null" >
+        SHARE_TYPE = #{record.shareType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shareValue != null" >
+        SHARE_VALUE = #{record.shareValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.author != null" >
+        AUTHOR = #{record.author,jdbcType=CHAR},
+      </if>
+      <if test="record.introduction != null" >
+        INTRODUCTION = #{record.introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAppRecomment != null" >
+        IS_APP_RECOMMENT = #{record.isAppRecomment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appRecommentLabel != null" >
+        APP_RECOMMENT_LABEL = #{record.appRecommentLabel,jdbcType=CHAR},
+      </if>
+      <if test="record.createDate != null" >
+        CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createBy != null" >
+        CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateDate != null" >
+        UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null" >
+        UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDeleted != null" >
+        IS_DELETED = #{record.isDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        VERSION = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.fontNum != null" >
+        FONT_NUM = #{record.fontNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.uid != null" >
+        UID = #{record.uid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        PHONE = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.openStatus != null" >
+        OPEN_STATUS = #{record.openStatus,jdbcType=CHAR},
+      </if>
+      <if test="record.fontFrom != null" >
+        FONT_FROM = #{record.fontFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fontClientId != null" >
+        FONT_CLIENT_ID = #{record.fontClientId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isWebRecomment != null" >
+        IS_WEB_RECOMMENT = #{record.isWebRecomment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.webRecommentLabel != null" >
+        WEB_RECOMMENT_LABEL = #{record.webRecommentLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.level != null" >
+        LEVEL = #{record.level,jdbcType=VARCHAR},
+      </if>
+      <if test="record.formater != null" >
+        FORMATER = #{record.formater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fontMode != null" >
+        FONT_MODE = #{record.fontMode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fontCode != null" >
+        FONT_CODE = #{record.fontCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thickness != null" >
+        THICKNESS = #{record.thickness,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channel != null" >
+        CHANNEL = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientParentId != null" >
+        CLIENT_PARENT_ID = #{record.clientParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rootId != null" >
+        ROOT_ID = #{record.rootId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fontCloudId != null" >
+        FONT_CLOUD_ID = #{record.fontCloudId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_font
+    set ID = #{record.id,jdbcType=CHAR},
+      FONT_NAME = #{record.fontName,jdbcType=VARCHAR},
+      PRICE = #{record.price,jdbcType=DECIMAL},
+      SHARE_TYPE = #{record.shareType,jdbcType=VARCHAR},
+      SHARE_VALUE = #{record.shareValue,jdbcType=DECIMAL},
+      AUTHOR = #{record.author,jdbcType=CHAR},
+      INTRODUCTION = #{record.introduction,jdbcType=VARCHAR},
+      IS_APP_RECOMMENT = #{record.isAppRecomment,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      APP_RECOMMENT_LABEL = #{record.appRecommentLabel,jdbcType=CHAR},
+      CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      CREATE_BY = #{record.createBy,jdbcType=VARCHAR},
+      UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{record.updateBy,jdbcType=VARCHAR},
+      IS_DELETED = #{record.isDeleted,jdbcType=VARCHAR},
+      VERSION = #{record.version,jdbcType=INTEGER},
+      FONT_NUM = #{record.fontNum,jdbcType=INTEGER},
+      UID = #{record.uid,jdbcType=VARCHAR},
+      PHONE = #{record.phone,jdbcType=VARCHAR},
+      OPEN_STATUS = #{record.openStatus,jdbcType=CHAR},
+      FONT_FROM = #{record.fontFrom,jdbcType=VARCHAR},
+      FONT_CLIENT_ID = #{record.fontClientId,jdbcType=VARCHAR},
+      IS_WEB_RECOMMENT = #{record.isWebRecomment,jdbcType=VARCHAR},
+      WEB_RECOMMENT_LABEL = #{record.webRecommentLabel,jdbcType=VARCHAR},
+      LEVEL = #{record.level,jdbcType=VARCHAR},
+      FORMATER = #{record.formater,jdbcType=VARCHAR},
+      FONT_MODE = #{record.fontMode,jdbcType=VARCHAR},
+      FONT_CODE = #{record.fontCode,jdbcType=VARCHAR},
+      THICKNESS = #{record.thickness,jdbcType=VARCHAR},
+      CHANNEL = #{record.channel,jdbcType=VARCHAR},
+      CLIENT_PARENT_ID = #{record.clientParentId,jdbcType=VARCHAR},
+      ROOT_ID = #{record.rootId,jdbcType=VARCHAR},
+      FONT_CLOUD_ID = #{record.fontCloudId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhenming.test.entity.Font" >
+    update t_font
+    <set >
+      <if test="fontName != null" >
+        FONT_NAME = #{fontName,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="shareType != null" >
+        SHARE_TYPE = #{shareType,jdbcType=VARCHAR},
+      </if>
+      <if test="shareValue != null" >
+        SHARE_VALUE = #{shareValue,jdbcType=DECIMAL},
+      </if>
+      <if test="author != null" >
+        AUTHOR = #{author,jdbcType=CHAR},
+      </if>
+      <if test="introduction != null" >
+        INTRODUCTION = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="isAppRecomment != null" >
+        IS_APP_RECOMMENT = #{isAppRecomment,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="appRecommentLabel != null" >
+        APP_RECOMMENT_LABEL = #{appRecommentLabel,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null" >
+        IS_DELETED = #{isDeleted,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="fontNum != null" >
+        FONT_NUM = #{fontNum,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        UID = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="openStatus != null" >
+        OPEN_STATUS = #{openStatus,jdbcType=CHAR},
+      </if>
+      <if test="fontFrom != null" >
+        FONT_FROM = #{fontFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="fontClientId != null" >
+        FONT_CLIENT_ID = #{fontClientId,jdbcType=VARCHAR},
+      </if>
+      <if test="isWebRecomment != null" >
+        IS_WEB_RECOMMENT = #{isWebRecomment,jdbcType=VARCHAR},
+      </if>
+      <if test="webRecommentLabel != null" >
+        WEB_RECOMMENT_LABEL = #{webRecommentLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        LEVEL = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="formater != null" >
+        FORMATER = #{formater,jdbcType=VARCHAR},
+      </if>
+      <if test="fontMode != null" >
+        FONT_MODE = #{fontMode,jdbcType=VARCHAR},
+      </if>
+      <if test="fontCode != null" >
+        FONT_CODE = #{fontCode,jdbcType=VARCHAR},
+      </if>
+      <if test="thickness != null" >
+        THICKNESS = #{thickness,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        CHANNEL = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="clientParentId != null" >
+        CLIENT_PARENT_ID = #{clientParentId,jdbcType=VARCHAR},
+      </if>
+      <if test="rootId != null" >
+        ROOT_ID = #{rootId,jdbcType=VARCHAR},
+      </if>
+      <if test="fontCloudId != null" >
+        FONT_CLOUD_ID = #{fontCloudId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhenming.test.entity.Font" >
+    update t_font
+    set FONT_NAME = #{fontName,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=DECIMAL},
+      SHARE_TYPE = #{shareType,jdbcType=VARCHAR},
+      SHARE_VALUE = #{shareValue,jdbcType=DECIMAL},
+      AUTHOR = #{author,jdbcType=CHAR},
+      INTRODUCTION = #{introduction,jdbcType=VARCHAR},
+      IS_APP_RECOMMENT = #{isAppRecomment,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      APP_RECOMMENT_LABEL = #{appRecommentLabel,jdbcType=CHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      IS_DELETED = #{isDeleted,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=INTEGER},
+      FONT_NUM = #{fontNum,jdbcType=INTEGER},
+      UID = #{uid,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      OPEN_STATUS = #{openStatus,jdbcType=CHAR},
+      FONT_FROM = #{fontFrom,jdbcType=VARCHAR},
+      FONT_CLIENT_ID = #{fontClientId,jdbcType=VARCHAR},
+      IS_WEB_RECOMMENT = #{isWebRecomment,jdbcType=VARCHAR},
+      WEB_RECOMMENT_LABEL = #{webRecommentLabel,jdbcType=VARCHAR},
+      LEVEL = #{level,jdbcType=VARCHAR},
+      FORMATER = #{formater,jdbcType=VARCHAR},
+      FONT_MODE = #{fontMode,jdbcType=VARCHAR},
+      FONT_CODE = #{fontCode,jdbcType=VARCHAR},
+      THICKNESS = #{thickness,jdbcType=VARCHAR},
+      CHANNEL = #{channel,jdbcType=VARCHAR},
+      CLIENT_PARENT_ID = #{clientParentId,jdbcType=VARCHAR},
+      ROOT_ID = #{rootId,jdbcType=VARCHAR},
+      FONT_CLOUD_ID = #{fontCloudId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

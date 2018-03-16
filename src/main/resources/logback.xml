@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- For assistance related to logback-translator or configuration -->
+<!-- files in general, please contact the logback user mailing list -->
+<!-- at http://www.qos.ch/mailman/listinfo/logback-user -->
+<!-- -->
+<!-- For professional support please see -->
+<!-- http://www.qos.ch/shop/products/professionalSupport -->
+<!-- -->
+<configuration>
+
+    <appender name="ConsoleOut" class="ch.qos.logback.core.ConsoleAppender">
+        <ImmediateFlush>false</ImmediateFlush>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{26}[%L] - %msg%n
+            </pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="org.apache" level="INFO"/>
+    <logger name="com.fd.fapi" level="${log.api.level}"/>
+    <logger name="org.springframework" level="INFO"/>
+
+    <logger name="org.springframework.beans.TypeConverterDelegate">
+        <level value="error"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="ConsoleOut"/>
+    </root>
+</configuration>
